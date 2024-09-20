@@ -21,7 +21,6 @@ class ListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +28,6 @@ class ListFragment : Fragment() {
 // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val coffeeList = listOf<View>(
@@ -37,16 +35,16 @@ class ListFragment : Fragment() {
             view.findViewById(R.id.americano),
             view.findViewById(R.id.latte)
         )
-        coffeeList.forEach { coffee ->
+        coffeeList.forEach{ coffee ->
             val fragmentBundle = Bundle()
             fragmentBundle.putInt(COFFEE_ID, coffee.id)
             coffee.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                    R.id.coffee_id_action, fragmentBundle)
+                    R.id.coffee_id_action,
+                    fragmentBundle)
             )
         }
     }
-
     companion object {
         const val COFFEE_ID = "COFFEE_ID"
     }
