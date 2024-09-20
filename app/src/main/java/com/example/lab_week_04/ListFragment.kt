@@ -40,12 +40,13 @@ class ListFragment : Fragment() {
             fragmentBundle.putInt(COFFEE_ID, coffee.id)
             coffee.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                    R.id.coffee_id_action,
+                    R.id.action_listFragment_to_detailFragment,
                     fragmentBundle)
             )
         }
     }
     companion object {
         const val COFFEE_ID = "COFFEE_ID"
+
     }
 }
