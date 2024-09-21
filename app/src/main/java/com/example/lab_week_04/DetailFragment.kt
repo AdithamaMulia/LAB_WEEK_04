@@ -18,33 +18,29 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
-    private var coffeeTitle: TextView? = null
-    private var coffeeDesc: TextView? = null
+    private val coffeeTitle: TextView?
+        get() = view?.findViewById(R.id.coffee_title)
+    private val coffeeDesc: TextView?
+        get() = view?.findViewById(R.id.coffee_desc)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            // Use arguments if needed
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val coffeeTitle: TextView = view.findViewById(R.id.coffee_title)
-        val coffeeDesc: TextView = view.findViewById(R.id.coffee_desc)
-
-        // Example: Update the views' text
-        coffeeTitle.text = "Affogato"
-        coffeeDesc.text = "An espresso shot with a scoop of vanilla ice cream."
+        val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
+        setCoffeeData(coffeeId)
     }
+
     fun setCoffeeData(id: Int){
         when(id){
             R.id.affogato -> {
@@ -61,6 +57,7 @@ class DetailFragment : Fragment() {
             }
         }
     }
+
     companion object {
         private const val COFFEE_ID = "COFFEE_ID"
     }
